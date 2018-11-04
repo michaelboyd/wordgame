@@ -1,0 +1,38 @@
+
+--create match with default board size
+
+curl -X POST http://localhost:8080/api/match/create
+
+--create match with custom board size
+
+curl -X POST http://localhost:8080/api/match/create?boardSize={integer}
+
+--By default a match is created with active status. This will update match status flag to false
+
+curl -X PUT http://localhost:8080/api/match/{id}/update?active={true/false}
+
+-- list games by status
+
+curl -X GET http://localhost:8080/api/match/list?active={true/false}
+
+-- list active games by default
+
+curl -X GET http://localhost:8080/api/match/list
+
+-- delete a match by id
+
+curl -X DELETE http://localhost:8080/api/match/{id}/delete
+
+--display the match board
+
+curl -X GET http://localhost:8080/api/match/{id}/board
+
+--play a word
+
+curl -i -X POST -H "Content-Type:application/json" -d '{"x":0,"y":0,"word":"example","direction":"right"}' http://localhost:8080/api/match/{id}/play
+
+--get play history by match
+
+curl -X GET http://localhost:8080/api/match/{id}/play/history
+
+
