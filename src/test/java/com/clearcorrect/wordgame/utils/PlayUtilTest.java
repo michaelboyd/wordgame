@@ -82,5 +82,13 @@ public class PlayUtilTest {
 		valid = PlayUtil.isValid(play, BOARD_SIZE,new ArrayList<>());
 		assertTrue(valid);
 	}
+	
+	@Test
+	public void testNegativeCoordinates() {
+		//word DOES NOT intersect with another word
+		play = new Play(0, -7, "example", Direction.down.toString(), null);
+		valid = PlayUtil.isValid(play, BOARD_SIZE,plays);
+		assertFalse(valid);		
+	}	
 
 }

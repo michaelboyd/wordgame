@@ -13,7 +13,9 @@ public class PlayUtil {
 		//make sure we have required values to play
 		if (play.getX() == null || play.getY() == null || play.getWord() == null || play.getDirection() == null) {
 			return false;
-		}		
+		}
+		
+		
 		
 		//check the value being used for direction
 		String direction = play.getDirection().toLowerCase();
@@ -23,13 +25,21 @@ public class PlayUtil {
 			return false;
 		}
 		
-		//make sure the word fits on the board
+		
 		int x = play.getX();
 		int y = play.getY();
+		
+		//make sure x and y are positive
+		if(x < 0 || y < 0) {
+			return false;
+		}
+		
+		//make sure the word fits on the board
 		int wordSize = play.getWord().length();
 		if( (x+wordSize > boardSize) || (y+wordSize > boardSize)) {
 			return false;
 		}
+		
 		
 		if(plays.size() > 0) {
 			//make sure word is sharing space with other word
