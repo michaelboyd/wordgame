@@ -6,7 +6,9 @@ import java.util.List;
 import com.clearcorrect.wordgame.entities.Play;
 
 import de.vandermeer.asciitable.AT_Context;
+import de.vandermeer.asciitable.AT_Row;
 import de.vandermeer.asciitable.AsciiTable;
+import de.vandermeer.skb.interfaces.transformers.textformat.TextAlignment;
 
 public class BoardUtil {
 	
@@ -19,6 +21,7 @@ public class BoardUtil {
 		Double width = size * 4.19;
 		context.setWidth(width.intValue());
 		List <String> rowLists[] = new List[size];
+		AT_Row row = null;
 
 		for (int i = 0; i < size; i++) {
 			List<String> rows = new ArrayList<>();
@@ -36,7 +39,8 @@ public class BoardUtil {
 
 		table.addRule();
 		for (int i = 0; i < size; i++) {
-			table.addRow(rowLists[i]);
+			row = table.addRow(rowLists[i]);
+			row.setTextAlignment(TextAlignment.CENTER);
 			table.addRule();
 		}
 
