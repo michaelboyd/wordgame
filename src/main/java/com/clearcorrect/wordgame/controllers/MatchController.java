@@ -100,6 +100,10 @@ public class MatchController {
 		if (match.isPresent()) {
 			Board board = boardRepository.findByMatch(match.get());
 			boardRepository.delete(board);
+			List <Play> plays = playRepository.findByMatchOrderByCreateDateDesc(match.get());
+			for(Play play : plays) {
+				playRepository.delete(play);
+			}
 			matchRepository.deleteById(id);
 			return new ResponseEntity<>(HttpStatus.OK);
 		} else {
